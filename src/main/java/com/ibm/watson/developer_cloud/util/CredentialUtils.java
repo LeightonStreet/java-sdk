@@ -17,10 +17,6 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -74,27 +70,8 @@ public class CredentialUtils {
    * @return The encoded API Key
    */
   private static String getKeyUsingJNDI(String serviceName) {
-    if (!isClassAvailable("javax.naming.Context")) {
-      log.info("JNDI string lookups is not available.");
-      return null;
-    }
-    try {
-      Context context = new InitialContext();
-      String lookupName = "watson-developer-cloud/" + serviceName + "/credentials";
-      String apiKey = (String) context.lookup(lookupName);
-      return apiKey;
-    } catch (NamingException e) {
-      return null;
-    }
-  }
-
-  private static boolean isClassAvailable(String className) {
-    try {
-      Class.forName(className);
-      return true;
-    } catch (Throwable e) {
-      return false;
-    }
+    log.info("JNDI string lookups for service:" + serviceName + " is not available.");
+    return null;
   }
 
   /**
