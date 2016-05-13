@@ -92,8 +92,8 @@ public class RecognizeOptions {
       Validator.isTrue(MediaType.parse(contentType) != null,
           "contentType is not a valid mime audio format. Valid formats start with 'audio/'");
 
-      Validator.isTrue(contentType.contains(HttpMediaType.AUDIO_RAW) && contentType.contains("rate"),
-          "When using PCM the audio rate should be specified.");
+//      Validator.isTrue(contentType.contains(HttpMediaType.AUDIO_RAW) && contentType.contains("rate"),
+//          "When using PCM the audio rate should be specified.");
 
       this.contentType = contentType;
       return this;
